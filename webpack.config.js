@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = {
   entry: "./src/index.js", // 입구
@@ -35,6 +36,11 @@ const config = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "style.css",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './public/index.html'),
+      inject: true,
+      filename: path.resolve(__dirname, './dist/index.html')
     })
   ]
 };
