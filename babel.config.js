@@ -13,7 +13,20 @@ module.exports = function (api) {
     ]
   ]
 
+  const plugins = [
+    [
+      "module-resolver",
+      {
+        root: ["./src"],
+        alias: {
+          imgs: "./pulic/images",
+        }
+      }
+    ]
+  ]
+
   return {
-    presets
+    presets,
+    plugins
   }
 };
