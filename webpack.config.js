@@ -33,6 +33,13 @@ const config = {
       }
     ]
   },
+  mode: "development",
+  devtool: "inline-source-map",
+  devServer: {
+    static: "./dist",
+    port: 9000,
+    hot: true,
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "style.css",
