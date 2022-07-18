@@ -1,10 +1,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+
 const config = {
-  entry: "./src/index.js", // 입구
-  output: { // 출구
+  entry: "./src/index.js",
+  output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "build.js",
   },
@@ -25,20 +27,15 @@ const config = {
           {
             loader: "url-loader",
             options: {
+              // useRelativePath: true,
               name: "images/[name].[ext]?[hash]",
-              limit: 10000
-            }
-          }
-        ]
-      }
-    ]
-  },
-  mode: "development",
-  devtool: "inline-source-map",
-  devServer: {
-    static: "./dist",
-    port: 9000,
-    hot: true,
+              // publicPath: "./dist/",
+              limit: 10000,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -48,8 +45,9 @@ const config = {
       template: path.resolve(__dirname, './public/index.html'),
       inject: true,
       filename: path.resolve(__dirname, './dist/index.html')
-    })
-  ]
+    }),
+    new CleanWebpackPlugin({ filename: "build.js" }),
+  ],
 };
 
 module.exports = config;
